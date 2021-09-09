@@ -74,9 +74,76 @@ final class ViewController: UIViewController {
 }
 ```
 
-##
+## 고차함수
+* 매칭되는 첫번째 Element 가져오기: https://developer.apple.com/documentation/swift/array/1848165-first
+* 매칭되는 Element 존재 여부: https://developer.apple.com/documentation/swift/array/2297359-contains
+
+# Foundation
+## NotificationCenter
+### [addObserver(_:selector:name:object:)](https://developer.apple.com/documentation/foundation/notificationcenter/1415360-addobserver)
+object 파라미터의 역할: 특정 객체로부터 발생한 노티만 필터해서 수신. 만약 nil 이면 필터 없이 수신. 필터링이 필요 없으면 nil로 사용 가능.
+
+> `anObject`
+The object that sends notifications to the observer. Specify a notification sender to deliver only notifications from this sender.
+>
+>When nil, the notification center doesn’t use sender names as criteria for delivery.
+
+### [post(name:object:userInfo:)](https://developer.apple.com/documentation/foundation/notificationcenter/1410608-post)
+object 파라미터의 역할: 노티를 발생시킨 객체를 전달. (sender 개념). 수신하는 쪽에서 구분이 필요 없으면 nil 전달해도 정상작동함.
+
+ > `anObject`
+The object posting the notification.
+
+### object 전달하는 예제
+
+```swift
+extension NSNotification.Name {
+    static let modelDidUpdateTitle: NSNotification.Name = .init("didUpdateTitle")
+}
+```
+
+```swift
+class ViewController: UIViewController {
+
+    private lazy var model: Model = Model()
+
+    override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTitle(_:)), name: .modelDidUpdateTitle, object: model)
+    }
+
+    @objc private func didUpdateTitle(_ notification: Notification) {
+        guard let updatedTitle = notification.userInfo?["updatedTitle"] as? String else {
+            return
+        }
+        // 추가 작업 ...
+    }
+
+    private func updateTitle() {
+        model.update(title: "testTitle")
+    }
+}
+```
+
+```swift
+final class Model {
+    private var title: String = ""
+
+    func update(title: String) {
+        self.title = title
+        NotificationCenter.default.post(name: .modelDidUpdateTitle, object: nil, userInfo: ["updatedTitle": title])
+    }
+}
+```
+
+### object에 struct를 넣으면 작동하지 않음
+- 이유: https://stackoverflow.com/a/56826646
+- objective-c 시절에 만들어진 API 인데 `id` 타입을 Swift로 가져오다보니 `Any`로 포팅됨.
+- 실제로는 `class`를 전달해줘야함
 
 # UIKit
+## UITouch
+* 터치한 View 가져오기: https://developer.apple.com/documentation/uikit/uitouch/1618109-view
+
 ## IBInspectable
 
 IBDesignable + IBInspectable 사용하면 인터페이스 빌더에서 Layer 속성도 간편하게 변경 가능
