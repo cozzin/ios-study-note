@@ -6,6 +6,48 @@
 * [About App Development with UIKit](https://developer.apple.com/documentation/uikit/about_app_development_with_uikit)
 * [App and Environment](https://developer.apple.com/documentation/uikit/app_and_environment)
 
+# OOP
+## 명령-쿼리 분리
+- `Query`: 질문해서 답을 요청
+- `Command `: 변경을 요청
+
+코드를 사용하는 입장에서 Query - Command 가 분리되지 않는다면 혼란을 겪을 수 있습니다.
+단순한 예를 들어보면
+
+```swift
+func isEmpty() -> Bool {
+    count += 1
+    return myArray.isEmpty
+}
+```
+
+isEmpty()를 호출한 사용자는 count가 증가되는 것을 인지하지 못할 수 있습니다.
+만약에 count가 증가한다는 것을 염두해두고 있더라도
+`1. empty 인가?` + `2. count가 증가하겠군` 으로 생각해야해서 코드를 이해하고 유지보수 하는데 어려움을 겪을 수 있습니다.
+
+위의 코드를 나눠보면 아래와 같이 작성할 수 있습니다.
+```swift
+func isEmpty() -> Bool {
+    return myArray.isEmpty
+}
+
+func increase() {
+    count += 1
+}
+```
+
+상황에 따라 이게 번거로울 수는 있는데, 유지보수에 큰 도움이 된다고 생각합니다.
+
+# 디자인패턴
+## 팩토리 패턴
+### 심플 팩토리
+파라미터로 주어진 type에 따라 객체를 다르게 생성
+http://ufx.kr/blog/191
+
+### 추상 팩토리
+상황에 따라 팩토리를 갈아끼우면서 결과물을 다르게 생성
+https://johngrib.github.io/wiki/abstract-factory-pattern/
+
 # Architecture
 ## MVC
 ![image](https://user-images.githubusercontent.com/11647461/132593358-187369d3-0dd4-4042-9644-043a0f508eae.png)
@@ -73,6 +115,29 @@ final class ViewController: UIViewController {
     }
 }
 ```
+
+## Enum
+### Associated Values
+enum에 값을 담아서 표현할 수 있음
+```swift
+enum Barcode {
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
+}
+```
+
+패턴 매칭해서 case를 나누고 Associated Values를 가져올 수 있음
+```swift
+switch productBarcode {
+case .upc(let numberSystem, let manufacturer, let product, let check):
+    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check).")
+case .qrCode(let productCode):
+    print("QR code: \(productCode).")
+}
+// Prints "QR code: ABCDEFGHIJKLMNOP."
+```
+
+https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html
 
 ## 고차함수
 * 매칭되는 첫번째 Element 가져오기: https://developer.apple.com/documentation/swift/array/1848165-first
@@ -143,6 +208,9 @@ final class Model {
 # UIKit
 ## UITouch
 * 터치한 View 가져오기: https://developer.apple.com/documentation/uikit/uitouch/1618109-view
+
+## UIGestureRecognizer
+* [UIGestureRecognizerDelegate](https://developer.apple.com/documentation/uikit/uigesturerecognizerdelegate) 통해서 이벤트 조작 가능
 
 ## IBInspectable
 
