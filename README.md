@@ -143,6 +143,56 @@ https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html
 * 매칭되는 첫번째 Element 가져오기: https://developer.apple.com/documentation/swift/array/1848165-first
 * 매칭되는 Element 존재 여부: https://developer.apple.com/documentation/swift/array/2297359-contains
 
+## Delegation
+* 이벤트가 발생한 객체를 같이 담아서 보내주면 delegate 구현할 때 편리함
+* `delegate?.doSomething(self, additional:)` 이런식으로 호출함
+
+```swift
+protocol DiceGame {
+    var dice: Dice { get }
+    func play()
+}
+protocol DiceGameDelegate: AnyObject {
+    func gameDidStart(_ game: DiceGame)
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
+    func gameDidEnd(_ game: DiceGame)
+}
+```
+
+```swift
+class SnakesAndLadders: DiceGame {
+    let finalSquare = 25
+    let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
+    var square = 0
+    var board: [Int]
+    init() {
+        board = Array(repeating: 0, count: finalSquare + 1)
+        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+    }
+    weak var delegate: DiceGameDelegate?
+    func play() {
+        square = 0
+        delegate?.gameDidStart(self)
+        gameLoop: while square != finalSquare {
+            let diceRoll = dice.roll()
+            delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
+            switch square + diceRoll {
+            case finalSquare:
+                break gameLoop
+            case let newSquare where newSquare > finalSquare:
+                continue gameLoop
+            default:
+                square += diceRoll
+                square += board[square]
+            }
+        }
+        delegate?.gameDidEnd(self)
+    }
+}
+```
+https://docs.swift.org/swift-book/LanguageGuide/Protocols.html
+
 # Foundation
 ## NotificationCenter
 ### [addObserver(_:selector:name:object:)](https://developer.apple.com/documentation/foundation/notificationcenter/1415360-addobserver)
