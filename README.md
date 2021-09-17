@@ -305,6 +305,30 @@ import UIKit
 
 https://stackoverflow.com/a/35372610
 
+## UIGraphicsImageRenderer
+* 이미지를 직접 그릴 때 `UIGraphicsBeginImageContextWithOptions` / `UIGraphicsEndImageContext`로 Context를 열고 닫아줘야 함
+
+```swift
+let rect = CGRect(origin: .zero, size: size)
+UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+UIColor.darkGray.setFill()
+UIRectFill(CGRect(x: 1, y: 1, width: 140, height: 140))
+let image = UIGraphicsGetImageFromCurrentImageContext()
+UIGraphicsEndImageContext()
+```
+
+* `UIGraphicsImageRenderer`를 사용하면 클로저 안에서 작업을 수행하고 따로 열고 닫는 함수 호출이 필요없는 장점이 있음: 가독성 증가, 실수하지 않을 수 있음
+
+```swift
+let renderer = UIGraphicsImageRenderer(size: CGSize(width: 200, height: 200))
+let image = renderer.image { (context) in
+  UIColor.darkGray.setFill()
+  context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))
+}
+```
+
+https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer
+
 # Xcode
 ## Debugging
 
