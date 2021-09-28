@@ -329,6 +329,12 @@ let image = renderer.image { (context) in
 
 https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer
 
+# Networking
+
+## Http 통신
+* [NSAllowsArbitraryLoads](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity/nsallowsarbitraryloads): 모든 도메인 HTTP 통신 허용
+* [NSExceptionDomains](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity/nsexceptiondomains): 특정 도메인만 HTTP 통신 허용
+
 # Xcode
 ## Debugging
 
