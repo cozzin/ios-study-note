@@ -87,6 +87,14 @@ https://johngrib.github.io/wiki/abstract-factory-pattern/
 * https://velog.io/@chagmn/iOS-Architecture-iOS-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%ED%8C%A8%ED%84%B4-2-MVP
 
 # Swift
+## ㅈ
+
+# Swif
+## Access Control
+https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html
+
+
+# Swif
 ## Lazy Stored Properties
 view가 load된 후에 특정 객체를 생성해서 사용하고 싶은 경우 Optional Type 사용 + viewDidLoad 에서 할당해서 사용하는 경우가 많음
 ```swift
