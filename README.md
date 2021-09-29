@@ -202,6 +202,12 @@ class SnakesAndLadders: DiceGame {
 ```
 https://docs.swift.org/swift-book/LanguageGuide/Protocols.html
 
+## Naming
+
+Type, Procotocl은 UpperCamelCase, 나머지는 lowerCamelCase
+![image](https://user-images.githubusercontent.com/11647461/135270908-6eacd780-6f81-4a24-ae14-da9a5c4c57fd.png)
+https://swift.org/documentation/api-design-guidelines/
+
 # Foundation
 ## NotificationCenter
 ### [addObserver(_:selector:name:object:)](https://developer.apple.com/documentation/foundation/notificationcenter/1415360-addobserver)
