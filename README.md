@@ -94,8 +94,6 @@ https://ko.wikipedia.org/wiki/%EC%A4%91%EC%9E%AC%EC%9E%90_%ED%8C%A8%ED%84%B4
 ## Access Control
 https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html
 
-
-# Swif
 ## Lazy Stored Properties
 view가 load된 후에 특정 객체를 생성해서 사용하고 싶은 경우 Optional Type 사용 + viewDidLoad 에서 할당해서 사용하는 경우가 많음
 ```swift
@@ -207,6 +205,10 @@ https://docs.swift.org/swift-book/LanguageGuide/Protocols.html
 Type, Procotocl은 UpperCamelCase, 나머지는 lowerCamelCase
 ![image](https://user-images.githubusercontent.com/11647461/135270908-6eacd780-6f81-4a24-ae14-da9a5c4c57fd.png)
 https://swift.org/documentation/api-design-guidelines/
+
+## Weak, Unowned
+
+https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html
 
 # Foundation
 ## NotificationCenter
