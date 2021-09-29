@@ -343,6 +343,10 @@ https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer
 * [NSAllowsArbitraryLoads](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity/nsallowsarbitraryloads): 모든 도메인 HTTP 통신 허용
 * [NSExceptionDomains](https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity/nsexceptiondomains): 특정 도메인만 HTTP 통신 허용
 
+## Throttle
+- 엄밀히 말하면 네트워크는 아니지만 네트워크 기능과 밀접해서 사용하는 경우가 많음
+https://eunjin3786.tistory.com/80
+
 # Xcode
 ## Debugging
 
