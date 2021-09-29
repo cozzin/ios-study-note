@@ -87,9 +87,6 @@ https://johngrib.github.io/wiki/abstract-factory-pattern/
 * https://velog.io/@chagmn/iOS-Architecture-iOS-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%ED%8C%A8%ED%84%B4-2-MVP
 
 # Swift
-## ㅈ
-
-# Swif
 ## Access Control
 https://docs.swift.org/swift-book/LanguageGuide/AccessControl.html
 
