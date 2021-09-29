@@ -48,6 +48,10 @@ http://ufx.kr/blog/191
 상황에 따라 팩토리를 갈아끼우면서 결과물을 다르게 생성
 https://johngrib.github.io/wiki/abstract-factory-pattern/
 
+## Mediator
+
+https://ko.wikipedia.org/wiki/%EC%A4%91%EC%9E%AC%EC%9E%90_%ED%8C%A8%ED%84%B4
+
 # Architecture
 ## MVC
 ![image](https://user-images.githubusercontent.com/11647461/132593358-187369d3-0dd4-4042-9644-043a0f508eae.png)
